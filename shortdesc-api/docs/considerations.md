@@ -65,6 +65,12 @@ that was leveraged. Seems to also align with guidance on how to write a
 of the MediaWiki API to also use query parameters itself. Following 
 same pattern could be familiar for users hitting APIs for both MediaWiki and shortdesc. 
 
+- Given that shortdesc-api makes use of the [MediaWiki API](https://www.mediawiki.org/wiki/API:Query#API_documentation),
+decision was made to communicate the same limit with the `titles` parameter in
+the schema docs, i.e. the maximum number of `titles` values in a single request
+allowed is 50 values. This is the same limit with the `titles` parameter
+in the MediaWiki API.
+
 - Redirects for a page title are possible as mentioned in 
 [Resolving redirects](https://www.mediawiki.org/wiki/API:Query#Resolving_redirects). 
 However: 
