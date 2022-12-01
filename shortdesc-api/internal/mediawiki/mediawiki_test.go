@@ -31,19 +31,19 @@ func TestConstructTitlesParam(t *testing.T) {
 		expected string
 	}{
 		{
-			"multiple titles",
-			[]string{"foo", "bar"},
-			"foo|bar",
+			name:     "multiple titles",
+			titles:   []string{"foo", "bar"},
+			expected: "foo|bar",
 		},
 		{
-			"single title",
-			[]string{"foo"},
-			"foo",
+			name:     "single title",
+			titles:   []string{"foo"},
+			expected: "foo",
 		},
 		{
-			"empty title",
-			[]string{},
-			"",
+			name:     "empty title",
+			titles:   []string{},
+			expected: "",
 		},
 	}
 
@@ -65,22 +65,22 @@ func TestParseShortDescRaw(t *testing.T) {
 		expectedErr error
 	}{
 		{
-			"common short description",
-			"foobar {{Short description|Canadian computer scientist}} foobar",
-			"{{Short description|Canadian computer scientist}}",
-			nil,
+			name:        "common short description",
+			content:     "foobar {{Short description|Canadian computer scientist}} foobar",
+			expectedRes: "{{Short description|Canadian computer scientist}}",
+			expectedErr: nil,
 		},
 		{
-			"empty short description",
-			"{{Short description| }}",
-			"{{Short description| }}",
-			nil,
+			name:        "empty short description",
+			content:     "{{Short description| }}",
+			expectedRes: "{{Short description| }}",
+			expectedErr: nil,
 		},
 		{
-			"no short description",
-			"foobar",
-			"",
-			nil,
+			name:        "no short description",
+			content:     "foobar",
+			expectedRes: "",
+			expectedErr: nil,
 		},
 	}
 
@@ -103,22 +103,22 @@ func TestParseShortDesc(t *testing.T) {
 		expectedErr  error
 	}{
 		{
-			"common short description",
-			"{{Short description|Canadian computer scientist}}",
-			"Canadian computer scientist",
-			nil,
+			name:         "common short description",
+			shortDescRaw: "{{Short description|Canadian computer scientist}}",
+			expectedRes:  "Canadian computer scientist",
+			expectedErr:  nil,
 		},
 		{
-			"empty short description",
-			"{{Short description| }}",
-			" ",
-			nil,
+			name:         "empty short description",
+			shortDescRaw: "{{Short description| }}",
+			expectedRes:  " ",
+			expectedErr:  nil,
 		},
 		{
-			"no short description",
-			"foobar",
-			"",
-			nil,
+			name:         "no short description",
+			shortDescRaw: "foobar",
+			expectedRes:  "",
+			expectedErr:  nil,
 		},
 	}
 
