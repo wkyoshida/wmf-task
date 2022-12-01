@@ -66,10 +66,13 @@ func GetShortDescs(titles []string) ([]PageShortDesc, error) {
 		return nil, err
 	}
 
-	pageShortDescs := make([]PageShortDesc, len(pages))
+	var pageShortDescs []PageShortDesc
 
-	i := 0
 	for title, page := range pages {
+		if page.PageID == "" {
+			continue
+		}
+
 		shortDescRaw, err := parseShortDescRaw(page.Content)
 		if err != nil {
 			return nil, err
@@ -80,7 +83,7 @@ func GetShortDescs(titles []string) ([]PageShortDesc, error) {
 			return nil, err
 		}
 
-		pageShortDescs[i] = PageShortDesc{
+		pageShortDesc := PageShortDesc{
 			PageID:       page.PageID,
 			Title:        title,
 			ShortDesc:    shortDesc,
@@ -88,7 +91,7 @@ func GetShortDescs(titles []string) ([]PageShortDesc, error) {
 			Timestamp:    page.Timestamp,
 		}
 
-		i++
+		pageShortDescs = append(pageShortDescs, pageShortDesc)
 	}
 
 	return pageShortDescs, nil
