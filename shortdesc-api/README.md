@@ -27,6 +27,10 @@ The titles of MediaWiki pages. The title is case sensitive.
 For the example, https://en.wikipedia.org/wiki/Abraham_Lincoln,
 the title would be `Abraham_Lincoln`.
 
+**Note:** The API reflects the same limit on the maximum number of `titles`
+values in a single request allowed by the parameter of the same name for the
+[MediaWiki API](https://www.mediawiki.org/wiki/API:Query#API_documentation), i.e. maximum is 50 values.
+
 ### Response schema
 
 The API response follows this schema:
