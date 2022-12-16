@@ -90,10 +90,10 @@ However:
   - The config file allowing multiple MediaWiki instances, e.g. English and Portuguese Wikipedia, could allow for 
   future enhancements:
     - The API could be enhanced to have an additional query parameter allowing 
-    a user to select which instance to make the request for. This would a user
+    a user to select which instance to make the request for. This would allow a user
     to make requests for different instances. However, the API would need a
-    way to communicate which instances are supported byt the API 
-    (either documentation or another API endpoint that lists the instances).  
+    way to communicate which instances are supported by the API 
+    (either via documentation and/or another API endpoint that returns a list of the supported instances).  
     - An alternative could be to simply host an instance of the API 
     specific per MediaWiki instance. This would allow each MediaWiki instance 
     to have their own shortdesc-api. 
@@ -106,38 +106,38 @@ However:
 
 ## General Availability
 
-- Technology and architecture
-  - Investment on dedicated infra, i.e. hardware, or cloud can help 
-  the API service have the required resources to serve increased demand
+- Technology and architecture:
+  - Investment on dedicated infra, i.e. on-prem hardware, or cloud infra can help 
+  the API service have the required resourcing to serve increased demand.
   - Caching can be leveraged as well to ease system burden by not performing 
-  full data retrievals/processing for every request
-  - Distribute the request processing can help ease the burden on single 
+  full data retrievals/processing for every request. [Redis](https://redis.io/) could be used as the technology for this.
+  - Distributing the request processing can help ease the burden on single 
   hardware and also help scale the service:
     - Geographically-distributed hardware for multiple global regions; 
-    multiple workers
-    - Leverage load-balancers to distribute requests/work 
+    multiple workers.
+    - Leverage load-balancers to distribute the requests/work.
     - Containerazing the API with a tool like 
     [Docker](https://en.wikipedia.org/wiki/Docker_(software)) can also help 
-    the service to scale as it can be spun up quicker in different machines
-    - Alongside the above point, container orchestration technologies lik
+    the service to scale as it can be spun up with more ease in different machines.
+    - Alongside the above point, container orchestration technologies like
     [kubernetes](https://github.com/kubernetes/kubernetes) can help deliver
     that scale with containers and manage multiple workers.
 
-- Community engagement
-  - Communicate best practices on how users should use the API
-  - Monitor for bad actors and, if needed, IP-block or something similar
-  - If needed, a rate limit could be enforced
+- Community engagement:
+  - Communicate best practices on how users should use the API.
+  - Monitor for bad actors and, if needed, IP-block or something similar.
+  - If needed, a rate limit could be enforced.
 
-- Good practices by the development team can help keep maintenance of the project: 
+- Good practices by the development team can also help with maintenance for the project: 
   - Testing, e.g. unit, integration, load, etc., to check for code quality. 
-    - For instance, have to look to leverage interfaces in the code to 
+    - For instance, have to look to leverage Go interfaces in the code to 
     properly use [mock](https://pkg.go.dev/github.com/stretchr/testify/mock) 
     in the current unit tests.
-  - Set up good CI, e.g. GitHub Actions, Jenkins, CircleCI, AWS CodeBuild, etc. Can help the team iterate quickly and with more confidence 
+  - Set up good CI, e.g. GitHub Actions, Jenkins, CircleCI, AWS CodeBuild, etc. This can help the team iterate quickly and with more confidence 
   on features/functionality.
   - Set up tools for observability, logging, metrics, alerts, uptime 
   monitoring. Can help the team better understand the health of the service
   and be aware of issues/outages that arise.
   - Dedicated SRE, Ops, support team, or support rotation. 
   Dedicated engineering resources for ensuring uptime/operations/reliability 
-  can help as well. Development resources can also then become more free to work on new features.
+  can help. Development resources can also then become more free to work on new features.
