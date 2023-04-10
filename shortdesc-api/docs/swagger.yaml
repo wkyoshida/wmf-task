@@ -1,0 +1,14 @@
+host: localhost
+info:
+    description: Documentation for the REST API shortdesc-api.
+    license:
+        name: GPLv3
+        url: https://www.gnu.org/licenses/gpl-3.0.html
+    title: shortdesc-api
+    version: 0.0.0
+paths: {}
+produces:
+    - application/json
+schemes:
+    - http
+swagger: "2.0"

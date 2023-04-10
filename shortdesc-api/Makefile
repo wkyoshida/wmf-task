@@ -1,4 +1,4 @@
-.PHONY: clean build test run
+.PHONY: clean build test run swagger serve-swagger
 
 BINARY_NAME=bin/shortdesc
 
@@ -14,3 +14,9 @@ test:
 
 run:
 	go run .
+
+swagger:
+	swagger generate spec -o docs/swagger.yaml --scan-models
+
+serve-swagger:
+	swagger serve --flavor=swagger docs/swagger.yaml

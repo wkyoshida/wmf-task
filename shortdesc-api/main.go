@@ -6,6 +6,8 @@ import (
 	"shortdesc-api/internal/config"
 	"shortdesc-api/internal/handler"
 	"shortdesc-api/internal/mediawiki"
+
+	_ "shortdesc-api/docs"
 )
 
 func main() {
